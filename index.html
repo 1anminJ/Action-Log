@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한민정 | Backend Developer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- Reset & Variables --- */
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #3b82f6;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --white: #ffffff;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; line-height: 1.6; color: var(--text-dark); background-color: var(--bg-light); }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        /* --- Layout Components --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 60px 0; }
+        
+        /* --- Header / Hero --- */
+        header { background-color: var(--primary-color); color: var(--white); padding: 80px 0 60px; text-align: center; }
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid var(--secondary-color); margin-bottom: 20px; background-color: #eee;}
+        .hero-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
+        .hero-subtitle { font-size: 1.2rem; color: #94a3b8; margin-bottom: 20px; font-weight: 300; }
+        .hero-desc { max-width: 700px; margin: 0 auto 30px; opacity: 0.9; font-size: 1rem; word-break: keep-all; }
+        
+        /* 상단 소셜 링크 */
+        .social-links a { display: inline-flex; align-items: center; background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 30px; margin: 0 5px; transition: 0.3s; color: var(--white); }
+        .social-links a:hover { background: var(--secondary-color); transform: translateY(-3px); }
+        .social-links i { margin-right: 8px; }
+
+        /* --- Skills Section --- */
+        .section-title { font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 40px; position: relative; }
+        .section-title::after { content: ''; display: block; width: 50px; height: 3px; background: var(--secondary-color); margin: 10px auto 0; }
+        
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .skill-card { background: var(--white); padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .skill-category { font-weight: 700; margin-bottom: 15px; color: var(--secondary-color); display: flex; align-items: center; }
+        .skill-category i { margin-right: 10px; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-tag { background: var(--bg-light); padding: 5px 12px; border-radius: 6px; font-size: 0.9rem; border: 1px solid #e2e8f0; }
+
+        /* --- Project Section --- */
+        .project-section { background: var(--white); }
+        .project-header { text-align: center; margin-bottom: 50px; }
+        .project-logo { font-size: 3rem; margin-bottom: 10px; } 
+        
+        .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .project-info h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-color); }
+        .project-info p { color: var(--text-gray); margin-bottom: 20px; text-align: justify; }
+        
+        .feature-card { background: var(--bg-light); border-radius: 12px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .feature-content { padding: 30px; }
+        /* 이미지 스타일 */
+        .feature-img { width: 100%; height: auto; border-bottom: 1px solid #eee; display: block; }
+        
+        .architecture-box { background: #f1f5f9; padding: 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
+        .architecture-box img { max-width: 100%; border-radius: 8px; margin-top: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+        .retro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .retro-card { padding: 20px; border-radius: 8px; border-left: 5px solid var(--secondary-color); background: var(--bg-light); }
+        .retro-card.improve { border-left-color: #ef4444; }
+
+        /* --- Footer --- */
+        footer { background: var(--primary-color); color: #94a3b8; text-align: center; padding: 40px 0; font-size: 0.9rem; }
+        
+        /* 푸터 전용 소셜 아이콘 스타일 */
+        .footer-social { margin-bottom: 20px; }
+        .footer-social a {
+            display: inline-block;
+            color: #94a3b8;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+        .footer-social a:hover {
+            color: var(--white);
+            transform: scale(1.2); /* 호버 시 약간 커짐 */
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            .project-grid, .retro-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <img src="증사.png" alt="한민정 프로필" class="profile-img" onerror="this.src='https://via.placeholder.com/150?text=Profile'">
+            <h1 class="hero-title">한민정</h1>
+            <p class="hero-subtitle">천천히 하지만 확실히 성장하는 백엔드 개발자</p>
+            <p class="hero-desc">
+                기술을 통해 일상의 비효율을 해결하고, 사용자에게 실질적인 시간을 선물하는 과정에 매력을 느낍니다.
+                제한된 시간 안에서도 핵심 기능(MVP)을 빠르게 정의하고 완성도 있게 구현해내는 실행력 있는 개발자가 되고 싶습니다.
+            </p>
+            <div class="social-links">
+                <a href="mailto:mjeoung413@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://github.com/1anminJ" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://linkedin.com/in/1anminJ" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-category"><i class="fas fa-server"></i> Backend</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Spring Security</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-category"><i class="fas fa-desktop"></i> Frontend</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">React Native</span>
+                        <span class="skill-tag">Axios</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-category"><i class="fas fa-database"></i> Data & Infra</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">AWS EC2/S3</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Nginx</span>
+                        <span class="skill-tag">Git/GitHub Actions</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-category"><i class="fas fa-robot"></i> AI & Tools</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">RAG</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Streamlit</span>
+                        <span class="skill-tag">Figma</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="container">
+            <h2 class="section-title">Featured Project</h2>
+            <div class="project-header">
+                <div class="project-logo">🎙️ Action Log</div>
+                <p>회의의 핵심만 남기다. AI 기반 자동 요약 및 Action Item 추출 서비스</p>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-info">
+                    <h3><i class="fas fa-exclamation-circle"></i> 문제 정의 (Problem)</h3>
+                    <p>강의나 회의 시 작성된 회의록은 누락이 많고, 녹음본 전체를 다시 듣는 것은 막대한 시간 비용이 듭니다. 기존 요약 서비스는 정확도가 낮거나 단순 텍스트 나열에 그쳐 2차 가공이 필요했습니다.</p>
+                </div>
+                <div class="project-info">
+                    <h3><i class="fas fa-check-circle"></i> 해결 방안 (Solution)</h3>
+                    <p>1시간 분량의 음성을 듣는 대신, OpenAI API 파이프라인을 통해 '핵심 요약'과 '실행 과제(Action Item)'를 구조화된 데이터로 추출하여 업무 생산성을 극대화했습니다.</p>
+                </div>
+            </div>
+
+            <div class="architecture-box">
+                <h3>🏗️ System Architecture</h3>
+                <p>React(SPA) + Spring Boot + OpenAI API + AWS Cloud</p>
+                <img src="다이어그램 예시.png" alt="시스템 아키텍처 다이어그램" onerror="this.style.display='none'; this.parentElement.innerHTML+='<p style=\'color:red; margin-top:10px;\'>* 아키텍처 이미지를 연결해주세요.</p>'">
+            </div>
+
+            <div class="feature-card">
+                <img src="홈.png" alt="AI 요약 기능 화면" class="feature-img">
+                <div class="feature-content">
+                    <h3>01. AI 자동 요약 및 Action Item 추출</h3>
+                    <p>Whisper(STT)와 GPT를 연동한 파이프라인을 구축했습니다. 프롬프트 엔지니어링을 통해 단순 요약뿐만 아니라 '주요 결정 사항'과 '할 일'을 JSON 포맷으로 정확히 추출하여 정보 재현율을 20% 향상시켰습니다.</p>
+                    <div class="skill-tags" style="margin-top:15px;">
+                        <span class="skill-tag">OpenAI API</span>
+                        <span class="skill-tag">WebFlux</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <img src="툴페이지.png" alt="보안 및 인증 화면" class="feature-img">
+                <div class="feature-content">
+                    <h3>02. JWT 기반 보안 시스템</h3>
+                    <p>Spring Security와 JWT를 도입하여 무상태(Stateless) 인증 아키텍처를 설계했습니다. API 요청 헤더 검증을 위한 커스텀 필터와 BCrypt 암호화를 적용하여 개인화된 데이터 보안을 강화했습니다.</p>
+                    <div class="skill-tags" style="margin-top:15px;">
+                        <span class="skill-tag">Spring Security</span>
+                        <span class="skill-tag">JWT</span>
+                        <span class="skill-tag">BCrypt</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-bottom: 20px; text-align: center;">💡 Retrospective</h3>
+            <div class="retro-grid">
+                <div class="retro-card">
+                    <h4>🙆‍♂️ 배운 점 (Learned)</h4>
+                    <p style="font-size: 0.95rem; margin-top: 10px; color: var(--text-gray);">
+                        외부 AI API 연동 시 발생하는 타임아웃과 포맷팅 이슈를 해결하며, 비동기 처리(WebFlux)와 프롬프트 엔지니어링을 통한 예외 처리의 중요성을 깊이 배웠습니다.
+                    </p>
+                </div>
+                <div class="retro-card improve">
+                    <h4>🚀 개선 계획 (Future)</h4>
+                    <p style="font-size: 0.95rem; margin-top: 10px; color: var(--text-gray);">
+                        WebSocket을 도입해 실시간 스트리밍 요약을 구현하고, RabbitMQ 메시지 큐를 적용하여 대용량 파일 처리 성능을 고도화할 계획입니다.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-social">
+                <a href="mailto:mjeoung413@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/1anminJ" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/1anminJ" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+
+            <p>&copy; 2025 Han Min-jeong. All rights reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 5px;">Designed for Backend Developer Portfolio</p>
+        </div>
+    </footer>
+
+</body>
+</html>
