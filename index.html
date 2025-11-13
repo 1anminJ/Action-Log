@@ -32,7 +32,6 @@
         .hero-subtitle { font-size: 1.2rem; color: #94a3b8; margin-bottom: 20px; font-weight: 300; }
         .hero-desc { max-width: 700px; margin: 0 auto 30px; opacity: 0.9; font-size: 1rem; word-break: keep-all; }
         
-        /* 상단 소셜 링크 */
         .social-links a { display: inline-flex; align-items: center; background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 30px; margin: 0 5px; transition: 0.3s; color: var(--white); }
         .social-links a:hover { background: var(--secondary-color); transform: translateY(-3px); }
         .social-links i { margin-right: 8px; }
@@ -59,7 +58,6 @@
         
         .feature-card { background: var(--bg-light); border-radius: 12px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .feature-content { padding: 30px; }
-        /* 이미지 스타일 */
         .feature-img { width: 100%; height: auto; border-bottom: 1px solid #eee; display: block; }
         
         .architecture-box { background: #f1f5f9; padding: 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
@@ -71,22 +69,10 @@
 
         /* --- Footer --- */
         footer { background: var(--primary-color); color: #94a3b8; text-align: center; padding: 40px 0; font-size: 0.9rem; }
-        
-        /* 푸터 전용 소셜 아이콘 스타일 */
         .footer-social { margin-bottom: 20px; }
-        .footer-social a {
-            display: inline-block;
-            color: #94a3b8;
-            font-size: 1.5rem;
-            margin: 0 15px;
-            transition: all 0.3s ease;
-        }
-        .footer-social a:hover {
-            color: var(--white);
-            transform: scale(1.2); /* 호버 시 약간 커짐 */
-        }
+        .footer-social a { display: inline-block; color: #94a3b8; font-size: 1.5rem; margin: 0 15px; transition: all 0.3s ease; }
+        .footer-social a:hover { color: var(--white); transform: scale(1.2); }
 
-        /* --- Mobile --- */
         @media (max-width: 768px) {
             .project-grid, .retro-grid { grid-template-columns: 1fr; }
             .hero-title { font-size: 2rem; }
@@ -97,7 +83,7 @@
 
     <header>
         <div class="container">
-            <img src="증사.png" alt="한민정 프로필" class="profile-img" onerror="this.src='https://via.placeholder.com/150?text=Profile'">
+            <img src="images/증사.png" alt="한민정 프로필" class="profile-img" onerror="this.src='https://via.placeholder.com/150?text=Profile'">
             <h1 class="hero-title">한민정</h1>
             <p class="hero-subtitle">천천히 하지만 확실히 성장하는 백엔드 개발자</p>
             <p class="hero-desc">
@@ -180,11 +166,11 @@
             <div class="architecture-box">
                 <h3>🏗️ System Architecture</h3>
                 <p>React(SPA) + Spring Boot + OpenAI API + AWS Cloud</p>
-                <img src="다이어그램 예시.png" alt="시스템 아키텍처 다이어그램" onerror="this.style.display='none'; this.parentElement.innerHTML+='<p style=\'color:red; margin-top:10px;\'>* 아키텍처 이미지를 연결해주세요.</p>'">
+                <img src="images/다이어그램 예시.png" alt="시스템 아키텍처 다이어그램" onerror="this.style.display='none'; this.parentElement.innerHTML+='<p style=\'color:red; margin-top:10px;\'>* 아키텍처 이미지를 연결해주세요.</p>'">
             </div>
 
             <div class="feature-card">
-                <img src="홈.png" alt="AI 요약 기능 화면" class="feature-img">
+                <img src="images/홈.png" alt="AI 요약 기능 화면" class="feature-img">
                 <div class="feature-content">
                     <h3>01. AI 자동 요약 및 Action Item 추출</h3>
                     <p>Whisper(STT)와 GPT를 연동한 파이프라인을 구축했습니다. 프롬프트 엔지니어링을 통해 단순 요약뿐만 아니라 '주요 결정 사항'과 '할 일'을 JSON 포맷으로 정확히 추출하여 정보 재현율을 20% 향상시켰습니다.</p>
@@ -197,7 +183,7 @@
             </div>
 
             <div class="feature-card">
-                <img src="툴페이지.png" alt="보안 및 인증 화면" class="feature-img">
+                <img src="images/툴페이지.png" alt="보안 및 인증 화면" class="feature-img">
                 <div class="feature-content">
                     <h3>02. JWT 기반 보안 시스템</h3>
                     <p>Spring Security와 JWT를 도입하여 무상태(Stateless) 인증 아키텍처를 설계했습니다. API 요청 헤더 검증을 위한 커스텀 필터와 BCrypt 암호화를 적용하여 개인화된 데이터 보안을 강화했습니다.</p>
@@ -235,7 +221,6 @@
                 <a href="https://github.com/1anminJ" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
                 <a href="https://linkedin.com/in/1anminJ" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
             </div>
-
             <p>&copy; 2025 Han Min-jeong. All rights reserved.</p>
             <p style="font-size: 0.8rem; margin-top: 5px;">Designed for Backend Developer Portfolio</p>
         </div>
