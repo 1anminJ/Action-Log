@@ -4,83 +4,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>한민정 | Backend Developer Portfolio</title>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Pretendard 대용으로 Noto Sans KR 사용 가능) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <style>
         /* --- Reset & Variables --- */
         :root {
             --primary-color: #0f172a;
-            --secondary-color: #3b82f6;
+            --secondary-color: #3b82f6; /* 포인트 컬러 (파란색) */
             --bg-light: #f8fafc;
             --text-dark: #1e293b;
             --text-gray: #64748b;
             --white: #ffffff;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; line-height: 1.6; color: var(--text-dark); background-color: var(--bg-light); }
-        a { text-decoration: none; color: inherit; }
+        
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; /* 폰트 변경 */
+            line-height: 1.6; 
+            color: var(--text-dark); 
+            background-color: var(--bg-light); 
+        }
+        
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
         
         /* --- Layout Components --- */
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-        section { padding: 60px 0; }
+        section { padding: 80px 0; }
         
         /* --- Header / Hero --- */
-        header { background-color: var(--primary-color); color: var(--white); padding: 100px 0 80px; text-align: center; }
-        .hero-title { font-size: 3rem; font-weight: 700; margin-bottom: 10px; }
-        .hero-subtitle { font-size: 1.3rem; color: #94a3b8; margin-bottom: 30px; font-weight: 300; }
-        .hero-desc { max-width: 700px; margin: 0 auto 40px; opacity: 0.9; font-size: 1.1rem; word-break: keep-all; line-height: 1.8; }
+        header { 
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); 
+            color: var(--white); 
+            padding: 120px 0 100px; 
+            text-align: center; 
+        }
+        .hero-title { font-size: 3.5rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
+        .hero-subtitle { font-size: 1.5rem; color: #94a3b8; margin-bottom: 40px; font-weight: 300; }
+        .hero-desc { 
+            max-width: 700px; margin: 0 auto 50px; opacity: 0.9; 
+            font-size: 1.1rem; word-break: keep-all; line-height: 1.8; 
+        }
         
-        .social-links a { display: inline-flex; align-items: center; background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 30px; margin: 0 5px; transition: 0.3s; color: var(--white); }
-        .social-links a:hover { background: var(--secondary-color); transform: translateY(-3px); }
-        .social-links i { margin-right: 8px; }
+        .social-links a { 
+            display: inline-flex; align-items: center; 
+            background: rgba(255,255,255,0.1); 
+            padding: 12px 25px; border-radius: 50px; margin: 0 8px; 
+            color: var(--white); border: 1px solid rgba(255,255,255,0.2);
+        }
+        .social-links a:hover { 
+            background: var(--secondary-color); 
+            border-color: var(--secondary-color);
+            transform: translateY(-3px); 
+        }
+        .social-links i { margin-right: 10px; font-size: 1.1rem; }
 
         /* --- Skills Section --- */
-        .section-title { font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 40px; position: relative; }
-        .section-title::after { content: ''; display: block; width: 50px; height: 3px; background: var(--secondary-color); margin: 10px auto 0; }
+        .section-title { 
+            font-size: 2rem; font-weight: 700; text-align: center; 
+            margin-bottom: 60px; position: relative; color: var(--primary-color);
+        }
+        .section-title::after { 
+            content: ''; display: block; width: 60px; height: 4px; 
+            background: var(--secondary-color); margin: 15px auto 0; border-radius: 2px;
+        }
         
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .skill-card { background: var(--white); padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .skill-category { font-weight: 700; margin-bottom: 15px; color: var(--secondary-color); display: flex; align-items: center; }
-        .skill-category i { margin-right: 10px; }
-        .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .skill-tag { background: var(--bg-light); padding: 5px 12px; border-radius: 6px; font-size: 0.9rem; border: 1px solid #e2e8f0; }
+        .skills-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+        }
+        .skill-card { 
+            background: var(--white); padding: 30px; border-radius: 16px; 
+            box-shadow: var(--shadow-sm); border: 1px solid #f1f5f9;
+            transition: transform 0.3s ease;
+        }
+        .skill-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+
+        .skill-category { 
+            font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; 
+            color: var(--primary-color); display: flex; align-items: center; 
+        }
+        .skill-category i { 
+            margin-right: 12px; color: var(--secondary-color); background: #eff6ff;
+            padding: 10px; border-radius: 8px; font-size: 1.1rem;
+        }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-tag { 
+            background: #f8fafc; padding: 6px 14px; border-radius: 8px; 
+            font-size: 0.95rem; border: 1px solid #e2e8f0; color: #475569;
+            font-weight: 500;
+        }
 
         /* --- Project Section --- */
         .project-section { background: var(--white); }
-        .project-header { text-align: center; margin-bottom: 50px; }
-        .project-logo { font-size: 3rem; margin-bottom: 10px; } 
+        .project-header { text-align: center; margin-bottom: 60px; }
+        .project-logo { 
+            font-size: 3.5rem; margin-bottom: 10px; display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+        .project-desc-main { font-size: 1.2rem; color: var(--text-gray); }
         
-        .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-        .project-info h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-color); }
-        .project-info p { color: var(--text-gray); margin-bottom: 20px; text-align: justify; }
+        /* Demo Video Section (NEW) */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 비율 유지 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 60px;
+            background: #000;
+        }
+        .video-container iframe, .video-container video {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: 0;
+        }
+
+        .project-grid { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 60px; 
+            align-items: flex-start;
+        }
+        .project-info h3 { 
+            font-size: 1.4rem; margin-bottom: 15px; color: var(--primary-color); 
+            display: flex; align-items: center;
+        }
+        .project-info h3 i { margin-right: 10px; color: var(--secondary-color); }
+        .project-info p { 
+            color: var(--text-gray); line-height: 1.8; text-align: justify; 
+            font-size: 1.05rem;
+        }
         
-        .feature-card { background: var(--bg-light); border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid var(--secondary-color); }
+        .feature-card { 
+            background: var(--bg-light); border-radius: 16px; margin-bottom: 30px; 
+            box-shadow: var(--shadow-sm); border: 1px solid #e2e8f0; overflow: hidden;
+        }
+        .feature-header {
+            background: #f1f5f9; padding: 15px 30px; border-bottom: 1px solid #e2e8f0;
+            font-weight: 700; color: var(--primary-color);
+        }
         .feature-content { padding: 30px; }
         
-        .architecture-box { background: #f1f5f9; padding: 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
-        .architecture-box img { max-width: 100%; border-radius: 8px; margin-top: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .architecture-box { 
+            background: #eff6ff; padding: 40px; border-radius: 16px; 
+            text-align: center; margin: 60px 0; border: 1px solid #dbeafe;
+        }
+        .architecture-box h3 { margin-bottom: 20px; color: #1e3a8a; }
+        .architecture-box img { 
+            max-width: 100%; border-radius: 12px; margin-top: 20px; 
+            box-shadow: var(--shadow-md); border: 1px solid rgba(0,0,0,0.1);
+        }
 
-        /* [NEW] 하단 갤러리 스타일 */
-        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 40px 0; }
-        .gallery-item { text-align: center; }
-        .gallery-img { width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        /* Gallery Grid */
+        .gallery-title { text-align: center; margin: 60px 0 30px; font-size: 1.5rem; }
+        .gallery-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+            gap: 30px; margin-bottom: 60px; 
+        }
+        .gallery-item { text-align: center; background: #fff; padding: 15px; border-radius: 12px; border: 1px solid #eee; }
+        .gallery-img { 
+            width: 100%; height: auto; border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08); 
+            transition: transform 0.3s ease; 
+        }
         .gallery-img:hover { transform: scale(1.02); }
-        .gallery-caption { margin-top: 10px; font-size: 0.9rem; color: var(--text-gray); font-weight: 600; }
+        .gallery-caption { 
+            margin-top: 15px; font-size: 0.95rem; color: var(--text-dark); font-weight: 600; 
+        }
 
-        .retro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 60px; }
-        .retro-card { padding: 20px; border-radius: 8px; border-left: 5px solid var(--secondary-color); background: var(--bg-light); }
-        .retro-card.improve { border-left-color: #ef4444; }
+        /* Retrospective */
+        .retro-grid { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; 
+        }
+        .retro-card { 
+            padding: 30px; border-radius: 12px; 
+            background: var(--white); border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
+        }
+        .retro-card h4 { 
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--primary-color);
+            border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;
+        }
+        .retro-card.improve h4 { color: #ef4444; }
 
         /* --- Footer --- */
-        footer { background: var(--primary-color); color: #94a3b8; text-align: center; padding: 50px 0; font-size: 0.9rem; }
-        .footer-social { margin-bottom: 20px; }
-        .footer-social a { display: inline-block; color: #94a3b8; font-size: 1.5rem; margin: 0 15px; transition: all 0.3s ease; }
+        footer { 
+            background: var(--primary-color); color: #94a3b8; text-align: center; 
+            padding: 60px 0; font-size: 0.95rem; border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-social a { 
+            display: inline-block; color: #cbd5e1; font-size: 1.8rem; margin: 0 20px; 
+            transition: all 0.3s ease; 
+        }
         .footer-social a:hover { color: var(--white); transform: scale(1.2); }
 
         @media (max-width: 768px) {
             .project-grid, .retro-grid, .gallery-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 2rem; }
+            .hero-title { font-size: 2.5rem; }
+            .section-title { font-size: 1.8rem; }
+            .video-container { padding-bottom: 75%; /* 모바일에서 비디오 비율 조정 */ }
         }
     </style>
 </head>
@@ -151,7 +282,29 @@
             <h2 class="section-title">Featured Project</h2>
             <div class="project-header">
                 <div class="project-logo">🎙️ Action Log</div>
-                <p>회의의 핵심만 남기다. AI 기반 자동 요약 및 Action Item 추출 서비스</p>
+                <p class="project-desc-main">회의의 핵심만 남기다. AI 기반 자동 요약 및 Action Item 추출 서비스</p>
+                <div class="skill-tags" style="justify-content: center; margin-top: 15px;">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Spring Boot</span>
+                    <span class="skill-tag">OpenAI</span>
+                    <span class="skill-tag">MySQL</span>
+                </div>
+            </div>
+
+            <!-- [시연 영상 섹션] -->
+            <!-- YouTube 영상일 경우 src에 'embed' 링크를 넣으세요. (예: https://www.youtube.com/embed/영상ID) -->
+            <!-- 직접 파일일 경우 video 태그 사용 (아래 주석 참고) -->
+            <div class="video-container">
+                <!-- 예시: 유튜브 임베드 -->
+                <iframe src="https://www.youtube.com/embed/DUMMY_VIDEO_ID" title="Action Log Demo Video" allowfullscreen></iframe>
+                
+                <!-- 예시: 로컬 비디오 파일 (mp4) 사용 시 아래 주석을 풀고 위 iframe을 지우세요 -->
+                <!-- 
+                <video controls>
+                    <source src="videos/demo.mp4" type="video/mp4">
+                    브라우저가 비디오 태그를 지원하지 않습니다.
+                </video> 
+                -->
             </div>
 
             <div class="project-grid">
@@ -167,42 +320,36 @@
 
             <div class="architecture-box">
                 <h3>🏗️ System Architecture</h3>
-                <p>React(SPA) + Spring Boot + OpenAI API + AWS Cloud</p>
-                <img src="images/architecture.png" alt="시스템 아키텍처 다이어그램" onerror="this.style.display='none'; this.parentElement.innerHTML+='<p style=\'color:red; margin-top:10px;\'>* 아키텍처 이미지를 연결해주세요.</p>'">
+                <p style="margin-bottom: 20px; color: #64748b;">React(SPA) + Spring Boot + OpenAI API + AWS Cloud</p>
+                <!-- 이미지 경로를 실제 파일 위치로 수정해주세요 -->
+                <img src="images/architecture.png" alt="시스템 아키텍처 다이어그램" onerror="this.style.display='none'; this.parentElement.innerHTML+='<p style=\'color:red; margin-top:10px;\'>* 아키텍처 이미지를 연결해주세요 (images/architecture.png)</p>'">
             </div>
 
             <div class="feature-card">
+                <div class="feature-header">01. AI 자동 요약 및 Action Item 추출</div>
                 <div class="feature-content">
-                    <h3>01. AI 자동 요약 및 Action Item 추출</h3>
                     <p>Whisper(STT)와 GPT를 연동한 파이프라인을 구축했습니다. 프롬프트 엔지니어링을 통해 단순 요약뿐만 아니라 '주요 결정 사항'과 '할 일'을 JSON 포맷으로 정확히 추출하여 정보 재현율을 20% 향상시켰습니다.</p>
-                    <div class="skill-tags" style="margin-top:15px;">
-                        <span class="skill-tag">OpenAI API</span>
-                        <span class="skill-tag">WebFlux</span>
-                        <span class="skill-tag">Prompt Engineering</span>
-                    </div>
                 </div>
             </div>
 
             <div class="feature-card">
+                <div class="feature-header">02. JWT 기반 보안 시스템</div>
                 <div class="feature-content">
-                    <h3>02. JWT 기반 보안 시스템</h3>
                     <p>Spring Security와 JWT를 도입하여 무상태(Stateless) 인증 아키텍처를 설계했습니다. API 요청 헤더 검증을 위한 커스텀 필터와 BCrypt 암호화를 적용하여 개인화된 데이터 보안을 강화했습니다.</p>
-                    <div class="skill-tags" style="margin-top:15px;">
-                        <span class="skill-tag">Spring Security</span>
-                        <span class="skill-tag">JWT</span>
-                        <span class="skill-tag">BCrypt</span>
-                    </div>
                 </div>
             </div>
 
+            <h3 class="gallery-title">📸 Project Screenshots</h3>
             <div class="gallery-grid">
                 <div class="gallery-item">
+                    <!-- 이미지 경로 수정 필요 -->
                     <img src="images/home.png" alt="메인 홈 화면" class="gallery-img">
-                    <p class="gallery-caption">▲ 메인 홈</p>
+                    <p class="gallery-caption">▲ 메인 홈 화면</p>
                 </div>
                 <div class="gallery-item">
+                    <!-- 이미지 경로 수정 필요 -->
                     <img src="images/summary.png" alt="AI 자동 요약 화면" class="gallery-img">
-                    <p class="gallery-caption">▲ 핵심 기능 : AI 자동 요약</p>
+                    <p class="gallery-caption">▲ 핵심 기능 : AI 자동 요약 결과</p>
                 </div>
             </div>
 
