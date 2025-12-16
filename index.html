@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>한민정 | Backend Developer Portfolio</title>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <style>
@@ -24,6 +22,11 @@
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html {
+            scroll-behavior: smooth; /* 부드러운 스크롤 이동 */
+            scroll-padding-top: 70px; /* 네비게이션바 높이만큼 여백 */
+        }
+
         body { 
             font-family: 'Noto Sans KR', sans-serif;
             line-height: 1.6; 
@@ -38,11 +41,49 @@
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
         section { padding: 80px 0; }
         
+        /* --- [NEW] Fixed Navigation Bar --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.95); /* 투명도 있는 다크 배경 */
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .nav-logo {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+        .nav-link {
+            color: #cbd5e1;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .nav-link:hover {
+            color: var(--secondary-color);
+        }
+
         /* --- Header / Hero --- */
         header { 
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); 
             color: var(--white); 
-            padding: 120px 0 100px; 
+            padding: 160px 0 100px; /* 네비게이션바 고려하여 상단 패딩 증가 */
             text-align: center; 
         }
         .hero-title { font-size: 3.5rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
@@ -112,25 +153,49 @@
         }
         .project-desc-main { font-size: 1.2rem; color: var(--text-gray); }
         
-        /* [추가됨] 배포 링크 버튼 스타일 */
-        .btn-deploy {
+        /* [수정됨] 링크 버튼 그룹 스타일 */
+        .link-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        /* 공통 버튼 스타일 */
+        .btn-common {
             display: inline-flex;
             align-items: center;
-            background-color: var(--secondary-color);
-            color: var(--white);
-            padding: 12px 30px;
+            padding: 10px 24px;
             border-radius: 50px;
             font-weight: 600;
-            margin-top: 25px;
-            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+            font-size: 0.95rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+        }
+        .btn-common:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .btn-common i { margin-right: 8px; }
+
+        /* 서비스 배포 버튼 (파란색) */
+        .btn-deploy {
+            background-color: var(--secondary-color);
+            color: var(--white);
         }
         .btn-deploy:hover {
             background-color: #2563eb;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
         }
-        .btn-deploy i { margin-right: 8px; }
+
+        /* 깃허브 버튼 (회색) */
+        .btn-github-link {
+            background-color: #334155;
+            color: var(--white);
+        }
+        .btn-github-link:hover {
+            background-color: #1e293b;
+        }
         
         /* Demo Video Section */
         .video-container {
@@ -232,12 +297,25 @@
             .hero-title { font-size: 2.5rem; }
             .section-title { font-size: 1.8rem; }
             .video-container { padding-bottom: 75%; }
+            .link-group { flex-direction: column; align-items: stretch; padding: 0 40px; }
+            .btn-common { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">MJ's Portfolio</a>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#project" class="nav-link">Project</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home">
         <div class="container">
             <h1 class="hero-title">한민정</h1>
             <p class="hero-subtitle">천천히 하지만 확실히 성장하는 백엔드 개발자</p>
@@ -253,7 +331,7 @@
         </div>
     </header>
 
-    <section>
+    <section id="skills">
         <div class="container">
             <h2 class="section-title">Technical Skills</h2>
             <div class="skills-grid">
@@ -297,7 +375,7 @@
         </div>
     </section>
 
-    <section class="project-section">
+    <section id="project" class="project-section">
         <div class="container">
             <h2 class="section-title">Featured Project</h2>
             <div class="project-header">
@@ -310,18 +388,20 @@
                     <span class="skill-tag">MySQL</span>
                 </div>
                 
-                <!-- [추가된 부분] 배포 링크 버튼 -->
-                <div>
-                    <a href="https://action-log-front-end.vercel.app" target="_blank" class="btn-deploy">
+                <div class="link-group">
+                    <a href="https://action-log-front-end.vercel.app" target="_blank" class="btn-common btn-deploy">
                         <i class="fas fa-rocket"></i> 서비스 바로가기
                     </a>
+                    <a href="https://github.com/1anminJ/Action-Log_BackEnd" target="_blank" class="btn-common btn-github-link">
+                        <i class="fab fa-github"></i> Backend Repo
+                    </a>
+                    <a href="https://github.com/1anminJ/Action-Log_FrontEnd" target="_blank" class="btn-common btn-github-link">
+                        <i class="fab fa-github"></i> Frontend Repo
+                    </a>
                 </div>
-                <!-- [추가된 부분 끝] -->
-            </div>
+                </div>
 
-            <!-- [시연 영상 섹션] -->
             <div class="video-container">
-                <!-- 예시: 유튜브 임베드 -->
                 <iframe src="https://www.youtube.com/embed/pxMV_wATEFg" title="Action Log Demo Video" allowfullscreen></iframe>
             </div>
 
@@ -339,7 +419,6 @@
             <div class="architecture-box">
                 <h3>🏗️ System Architecture</h3>
                 <p style="margin-bottom: 20px; color: #64748b;">React(SPA) + Spring Boot + OpenAI API + AWS Cloud</p>
-                <!-- 이미지 경로를 실제 파일 위치로 수정해주세요 -->
                 <img src="images/architecture.png" alt="시스템 아키텍처 다이어그램" onerror="this.style.display='none'; this.parentElement.innerHTML+='<p style=\'color:red; margin-top:10px;\'>* 아키텍처 이미지를 연결해주세요 (images/architecture.png)</p>'">
             </div>
 
@@ -360,12 +439,10 @@
             <h3 class="gallery-title">📸 Project Screenshots</h3>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <!-- 이미지 경로 수정 필요 -->
                     <img src="images/home.png" alt="메인 홈 화면" class="gallery-img">
                     <p class="gallery-caption">▲ 메인 홈 화면</p>
                 </div>
                 <div class="gallery-item">
-                    <!-- 이미지 경로 수정 필요 -->
                     <img src="images/summary.png" alt="AI 자동 요약 화면" class="gallery-img">
                     <p class="gallery-caption">▲ 핵심 기능 : AI 자동 요약 결과</p>
                 </div>
@@ -404,4 +481,3 @@
 
 </body>
 </html>
-
